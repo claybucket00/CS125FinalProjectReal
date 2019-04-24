@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button button = findViewById(R.id.help);
         button.setOnClickListener(new View.OnClickListener() {
-            TextView thingy = (TextView).findViewById(R.id.helpText);
+            TextView thingy = findViewById(R.id.helpText);
             public void onClick(View v) {
                 if (thingy.isShown()) {
                    thingy.setVisibility(View.GONE);
