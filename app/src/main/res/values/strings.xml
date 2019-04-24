@@ -4,5 +4,6 @@
     <string name="action_favorite"></string>
     <string name="helpButton">Help</string>
     <string name="continueButton">Continue</string>
-    <string name="welcome_text">Welcome to Musically!</string>
+    <string name="welcome_text">Welcome to Tune$cape!</string>
+    <string name="instructions">If you are new to the app, or would just like a refresher, click help!</string>
 </resources>
