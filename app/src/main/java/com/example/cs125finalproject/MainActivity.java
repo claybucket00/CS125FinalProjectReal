@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,15 +32,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final Button recording = findViewById(R.id.continueButton);
+        recording.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+                Intent intent = new Intent(view.getContext(), Recording.class);
+                view.getContext().startActivity(intent);}
         });
+
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
     }
 
     @Override
@@ -62,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_favorite:
-                // User chose the "Favorite" action, show recording UI..
+                // User chose the "Notes" action, show recording UI..
                 return true;
 
             default:
