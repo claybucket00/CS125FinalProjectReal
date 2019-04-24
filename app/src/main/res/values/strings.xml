@@ -6,4 +6,6 @@
     <string name="continueButton">Continue</string>
     <string name="welcome_text">Welcome to Tune$cape!</string>
     <string name="instructions">If you are new to the app, or would just like a refresher, click help!</string>
+    <string name="helpText">This app allows you to record sounds and make a beat.
+        Click on the notes at the top to get started</string>
 </resources>
