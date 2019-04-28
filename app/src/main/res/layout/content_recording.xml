@@ -27,7 +27,7 @@
     <TextView
         android:id="@+id/recordingPager"
         android:layout_width="227dp"
-        android:layout_height="84dp"
+        android:layout_height="38dp"
         android:text="Step 1: Click to Record!"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:textSize="24sp"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:text="Play Track 1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:text="Play Track 2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -86,11 +86,11 @@
         android:layout_height="wrap_content"
         android:text="Play Track 3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintVertical_bias="0.424" />
 
     <ToggleButton
         android:id="@+id/toggleButton4"
@@ -98,11 +98,11 @@
         android:layout_height="wrap_content"
         android:text="Play Track 4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.523" />
 
     <Switch
         android:id="@+id/switch1"
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:text="Play Track 1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.664"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -122,11 +122,11 @@
         android:layout_height="wrap_content"
         android:text="Play Track 2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.664"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327" />
+        app:layout_constraintVertical_bias="0.33" />
 
     <Switch
         android:id="@+id/switch3"
@@ -134,11 +134,11 @@
         android:layout_height="wrap_content"
         android:text="Play Track 3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.664"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442" />
+        app:layout_constraintVertical_bias="0.43" />
 
     <Switch
         android:id="@+id/switch4"
@@ -146,11 +146,11 @@
         android:layout_height="23dp"
         android:text="Play Track 4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.664"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
+        app:layout_constraintVertical_bias="0.52" />
 
     <CheckBox
         android:id="@+id/checkBox"

@@ -9,12 +9,12 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:layout_width="337dp"
-        android:layout_height="56dp"
+        android:layout_width="284dp"
+        android:layout_height="137dp"
         android:layout_marginTop="8dp"
         android:text="@string/welcome_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:typeface="monospace"
         app:fontFamily="sans-serif-black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,26 +25,27 @@
 
     <Button
         android:id="@+id/help"
-        android:layout_width="123dp"
-        android:layout_height="69dp"
+        android:layout_width="133dp"
+        android:layout_height="61dp"
         android:text="@string/helpButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.973" />
+        app:layout_constraintVertical_bias="0.971" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="159dp"
-        android:layout_height="101dp"
+        android:layout_width="181dp"
+        android:layout_height="84dp"
         android:text="@string/instructions"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,11 +57,11 @@
         android:layout_height="453dp"
         android:src="@mipmap/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.179" />
+        app:layout_constraintVertical_bias="0.162" />
 
     <TextView
         android:id="@+id/helpText"
@@ -77,14 +78,15 @@
 
     <Button
         android:id="@+id/continueButton"
-        android:layout_width="124dp"
-        android:layout_height="69dp"
+        android:layout_width="184dp"
+        android:layout_height="116dp"
         android:text="@string/continueButton"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.973" />
+        app:layout_constraintVertical_bias="0.758" />
 
 </android.support.constraint.ConstraintLayout>
