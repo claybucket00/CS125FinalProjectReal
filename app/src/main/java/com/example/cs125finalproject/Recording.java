@@ -22,7 +22,10 @@ public class Recording extends AppCompatActivity {
     private static final String LOG_TAG = "Music";
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     private static String fileName = null;
-    boolean recording = true;
+    boolean recording1 = true;
+    boolean recording2 = true;
+    boolean recording3 = true;
+    boolean recording4 = true;
 
     private MediaRecorder recorder = null;
     private MediaPlayer player = null;
@@ -97,21 +100,22 @@ public class Recording extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         //record file to external cache
         fileName = getExternalCacheDir().getAbsolutePath();
         fileName += "/music.3gp";
         ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_recording);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final ToggleButton record1 = findViewById(R.id.playButton1);
+        final ToggleButton record1 = findViewById(R.id.recordButton1);
         record1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                onRecord(recording);
-                recording = !recording;
+                onRecord(recording1);
+                recording1 = !recording1;
             }
         });
 

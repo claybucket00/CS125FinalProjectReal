@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.801" />
 
     <ToggleButton
-        android:id="@+id/playButton1"
+        android:id="@+id/recordButton1"
         style="@style/AlertDialog.AppCompat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
         app:layout_constraintVertical_bias="0.215" />
 
     <ToggleButton
-        android:id="@+id/toggleButton2"
+        android:id="@+id/recordButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play Track 2"
@@ -81,7 +81,7 @@
         app:layout_constraintVertical_bias="0.322" />
 
     <ToggleButton
-        android:id="@+id/toggleButton3"
+        android:id="@+id/recordButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play Track 3"
@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.424" />
 
     <ToggleButton
-        android:id="@+id/toggleButton4"
+        android:id="@+id/recordButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play Track 4"
@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.523" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/playSwitch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play Track 1"
@@ -117,7 +117,7 @@
         app:layout_constraintVertical_bias="0.225" />
 
     <Switch
-        android:id="@+id/switch2"
+        android:id="@+id/playSwitch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play Track 2"
@@ -129,7 +129,7 @@
         app:layout_constraintVertical_bias="0.33" />
 
     <Switch
-        android:id="@+id/switch3"
+        android:id="@+id/playSwitch3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play Track 3"
@@ -141,7 +141,7 @@
         app:layout_constraintVertical_bias="0.43" />
 
     <Switch
-        android:id="@+id/switch4"
+        android:id="@+id/playSwitch4"
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:text="Play Track 4"
