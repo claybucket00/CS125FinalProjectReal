@@ -45,7 +45,7 @@ public class Music extends AppCompatActivity {
         if (start) {
             startRecording();
         } else {
-            stopPlaying();
+            stopRecording();
         }
     }
 

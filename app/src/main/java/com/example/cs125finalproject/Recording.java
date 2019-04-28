@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -26,6 +27,10 @@ public class Recording extends AppCompatActivity {
     boolean recording2 = true;
     boolean recording3 = true;
     boolean recording4 = true;
+    boolean playing1 = true;
+    boolean playing2 = true;
+    boolean playing3 = true;
+    boolean playing4 = true;
 
     private MediaRecorder recorder = null;
     private MediaPlayer player = null;
@@ -140,6 +145,38 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 onRecord(recording4);
                 recording4 = !recording4;
+            }
+        });
+
+        final Switch play1 = findViewById(R.id.playSwitch1);
+        play1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onPlay(playing1);
+                playing1 = !playing1;
+            }
+        });
+
+        final Switch play2 = findViewById(R.id.playSwitch2);
+        play2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onPlay(playing2);
+                playing2 = !playing2;
+            }
+        });
+
+        final Switch play3 = findViewById(R.id.playSwitch3);
+        play3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onPlay(playing3);
+                playing3 = !playing3;
+            }
+        });
+
+        final Switch play4 = findViewById(R.id.playSwitch4);
+        play4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onPlay(playing4);
+                playing4 = !playing4;
             }
         });
 
