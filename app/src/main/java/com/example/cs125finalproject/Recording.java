@@ -38,7 +38,7 @@ public class Recording extends AppCompatActivity {
         if (start) {
             startRecording();
         } else {
-            stopPlaying();
+            stopRecording();
         }
     }
 
@@ -116,6 +116,30 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 onRecord(recording1);
                 recording1 = !recording1;
+            }
+        });
+
+        final ToggleButton record2 = findViewById(R.id.recordButton2);
+        record2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onRecord(recording2);
+                recording2 = !recording2;
+            }
+        });
+
+        final ToggleButton record3 = findViewById(R.id.recordButton3);
+        record3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onRecord(recording3);
+                recording3 = !recording3;
+            }
+        });
+
+        final ToggleButton record4 = findViewById(R.id.recordButton4);
+        record4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onRecord(recording4);
+                recording4 = !recording4;
             }
         });
 
