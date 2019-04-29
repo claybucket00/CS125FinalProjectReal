@@ -68,6 +68,7 @@ public class Recording extends AppCompatActivity {
     }
     private void stopPlaying() {
         player.release();
+        player.setLooping(false);
         player = null;
     }
     private void startRecording() {
@@ -108,8 +109,6 @@ public class Recording extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //record file to external cache
-        fileName = getExternalCacheDir().getAbsolutePath();
-        fileName += "/music.3gp";
         ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
 
@@ -120,38 +119,64 @@ public class Recording extends AppCompatActivity {
         final ToggleButton record1 = findViewById(R.id.recordButton1);
         record1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                onRecord(recording1);
-                recording1 = !recording1;
+                if (recording2 && recording3 && recording4) {
+                    fileName = getExternalCacheDir().getAbsolutePath();
+                    fileName += "/music.3gp";
+                    onRecord(recording1);
+                    recording1 = !recording1;
+                } else {
+                    record1.setSelected(false);
+                }
             }
         });
 
         final ToggleButton record2 = findViewById(R.id.recordButton2);
         record2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                onRecord(recording2);
-                recording2 = !recording2;
+                if (recording1 && recording3 && recording4) {
+                    fileName = getExternalCacheDir().getAbsolutePath();
+                    fileName += "/music1.3gp";
+                    onRecord(recording2);
+                    recording2 = !recording2;
+                } else {
+                    record2.setSelected(false);
+                }
             }
         });
 
         final ToggleButton record3 = findViewById(R.id.recordButton3);
         record3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                onRecord(recording3);
-                recording3 = !recording3;
+                if (recording1 && recording2 && recording4) {
+                    fileName = getExternalCacheDir().getAbsolutePath();
+                    fileName += "/music2.3gp";
+                    onRecord(recording3);
+                    recording3 = !recording3;
+                } else {
+                    record3.setSelected(false);
+                }
             }
         });
 
         final ToggleButton record4 = findViewById(R.id.recordButton4);
         record4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                onRecord(recording4);
-                recording4 = !recording4;
+                if (recording1 && recording2 && recording3) {
+                    fileName = getExternalCacheDir().getAbsolutePath();
+                    fileName += "/music3.3gp";
+                    onRecord(recording4);
+                    recording4 = !recording4;
+                } else {
+                    record4.setSelected(false);
+                }
             }
         });
 
         final Switch play1 = findViewById(R.id.playSwitch1);
         play1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                fileName = getExternalCacheDir().getAbsolutePath();
+                fileName += "/music.3gp";
                 onPlay(playing1);
                 playing1 = !playing1;
             }
@@ -160,6 +185,8 @@ public class Recording extends AppCompatActivity {
         final Switch play2 = findViewById(R.id.playSwitch2);
         play2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                fileName = getExternalCacheDir().getAbsolutePath();
+                fileName += "/music1.3gp";
                 onPlay(playing2);
                 playing2 = !playing2;
             }
@@ -168,6 +195,8 @@ public class Recording extends AppCompatActivity {
         final Switch play3 = findViewById(R.id.playSwitch3);
         play3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                fileName = getExternalCacheDir().getAbsolutePath();
+                fileName += "/music2.3gp";
                 onPlay(playing3);
                 playing3 = !playing3;
             }
@@ -176,30 +205,11 @@ public class Recording extends AppCompatActivity {
         final Switch play4 = findViewById(R.id.playSwitch4);
         play4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                fileName = getExternalCacheDir().getAbsolutePath();
+                fileName += "/music3.3gp";
                 onPlay(playing4);
                 playing4 = !playing4;
             }
         });
-
-
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
-
-//    @Override
-//    public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull
-//                                          super.onRequestPermissionResult(requestCode, permissions, grantResults);
-//    switch (requestCode) {
-//        case REQUEST_RECORD_AUDIO_PERMISSION;
-//            permissionToRecordTrue = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//            break;
-//    }
-//    if (!permissionToRecordTrue) finish();
-
 }
