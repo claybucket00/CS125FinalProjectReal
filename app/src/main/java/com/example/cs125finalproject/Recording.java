@@ -61,6 +61,7 @@ public class Recording extends AppCompatActivity {
             player.setDataSource(fileName);
             player.prepare();
             player.start();
+            player.setLooping(true);
         } catch (IOException e) {
             Log.e(LOG_TAG, "prepare() failed");
         }
