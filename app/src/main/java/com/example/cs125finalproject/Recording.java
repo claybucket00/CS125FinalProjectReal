@@ -5,9 +5,6 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +13,8 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.media.MediaMuxer;
+import android.media.SoundPool;
 
 import java.io.IOException;
 
@@ -23,6 +22,7 @@ public class Recording extends AppCompatActivity {
     private static final String LOG_TAG = "Music";
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     private static String fileName = null;
+    private static String downloadFile = null;
     boolean recording1 = true;
     boolean recording2 = true;
     boolean recording3 = true;
@@ -103,6 +103,28 @@ public class Recording extends AppCompatActivity {
             player.release();
             player = null;
         }
+    }
+    private void muxing() {
+        downloadFile = getExternalCacheDir().getAbsolutePath();
+        downloadFile += "/music5.3gp";
+
+//        try {
+//            File file = new File
+//        }
+    }
+    private void mixing() {
+        SoundPool mix = new SoundPool(4, 2, 3);
+        String file1 = getExternalCacheDir().getAbsolutePath();
+        file1 += "/music.3gp";
+        String file2 = getExternalCacheDir().getAbsolutePath();
+        file2 += "/music1.3gp";
+        String file3 = getExternalCacheDir().getAbsolutePath();
+        file3 += "/music2.3gp";
+        mix.load(file1, 1);
+        mix.load(file2, 2);
+        mix.load(file3, 3);
+
+
     }
 
     @Override
