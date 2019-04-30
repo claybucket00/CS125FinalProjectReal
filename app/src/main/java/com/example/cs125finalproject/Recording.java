@@ -179,7 +179,7 @@ public class Recording extends AppCompatActivity {
     }
     private void mixing() {
         if (mixing) {
-            pool = new SoundPool(4, 2, 3);
+            pool = new SoundPool(6, 2, 1);
             String file1 = getExternalCacheDir().getAbsolutePath();
             file1 += "/music.3gp";
             String file2 = getExternalCacheDir().getAbsolutePath();
@@ -195,7 +195,7 @@ public class Recording extends AppCompatActivity {
             mixing = false;
         } else {
             pool.release();
-            pool = new SoundPool(4, 2, 3);
+            pool = new SoundPool(6, 2, 1);
             String file1 = getExternalCacheDir().getAbsolutePath();
             file1 += "/music.3gp";
             String file2 = getExternalCacheDir().getAbsolutePath();
@@ -218,8 +218,8 @@ public class Recording extends AppCompatActivity {
         }
     }
     private void startMixing() {
-        pool.play(first, 0.75f, 1, 0, -1, 1);
-        pool.play(second, 1, 0.75f, 1, -1, 1);
+        pool.play(first, 0.75f, 1f, 0, -1, 1);
+        pool.play(second, 1f, 0.75f, 1, -1, 1);
         pool.play(third, 0.50f, 0.75f, 0, -1, 1);
         pool.play(fourth, 0.75f, 0.50f, 1, -1, 1);
     }
@@ -298,7 +298,7 @@ public class Recording extends AppCompatActivity {
         final CheckBox mixAllTogether = findViewById(R.id.checkBox);
         mixAllTogether.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                boolean checked = ((CheckBox) v).isChecked();
+                boolean checked = mixAllTogether.isChecked();
                 if (checked) {
                     mixing();
                 }
