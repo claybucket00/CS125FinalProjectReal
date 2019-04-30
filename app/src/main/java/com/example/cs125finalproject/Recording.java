@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.widget.CheckBox;
+import android.widget.Button;
 import android.media.MediaMuxer;
 import android.media.SoundPool;
 
@@ -32,6 +34,7 @@ public class Recording extends AppCompatActivity {
     boolean playing3 = true;
     boolean playing4 = true;
     private boolean mixing = true;
+    private boolean mixingPlaying = true;
     private int first = 0;
     private int second = 0;
     private int third = 0;
@@ -231,6 +234,23 @@ public class Recording extends AppCompatActivity {
         setContentView(R.layout.activity_recording);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        final CheckBox mixAllTogether = findViewById(R.id.checkBox);
+        mixAllTogether.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) v).isChecked();
+                if (checked) {
+                    mixing();
+                }
+            }
+        });
+
+        final Button playAllTracks = findViewById(R.id.playSoundpool);
+        playAllTracks.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onMix(mixingPlaying);
+            }
+        });
 
         final ToggleButton record1 = findViewById(R.id.recordButton1);
         record1.setOnClickListener(new View.OnClickListener() {

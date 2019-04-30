@@ -193,7 +193,7 @@
         app:layout_constraintVertical_bias="0.941" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/playSoundpool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play Loop"
@@ -205,10 +205,10 @@
         app:layout_constraintVertical_bias="0.842" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/track4Pitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Track 4 Pitch"
+        android:text="@string/track4Pitch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.745"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -217,10 +217,10 @@
         app:layout_constraintVertical_bias="0.759" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/track2Pitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Track 2 Pitch"
+        android:text="@string/track2Pitch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -229,10 +229,10 @@
         app:layout_constraintVertical_bias="0.759" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/track1Pitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Track 1 Pitch"
+        android:text="@string/track1Pitch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -241,10 +241,10 @@
         app:layout_constraintVertical_bias="0.682" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/track3Pitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Track 3 Pitch"
+        android:text="@string/track3Pitch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.745"
         app:layout_constraintLeft_toLeftOf="parent"

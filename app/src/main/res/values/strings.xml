@@ -10,4 +10,10 @@
         Click on continue to get started</string>
     <string name="title_activity_recording">Recording</string>
     <string name="recordingPage">Make Your Beat!</string>
+    <string name="track1Pitch">Track 1 Pitch</string>
+    <string name="track2Pitch">Track 2 Pitch</string>
+    <string name="track3Pitch">Track 3 Pitch</string>
+    <string name="track4Pitch">Track 4 Pitch</string>
+    <string name="highPitch">High Pitch</string>
+    <string name="lowPitch">Low Pitch</string>
 </resources>
