@@ -114,14 +114,6 @@ public class Recording extends AppCompatActivity {
             pool = null;
         }
     }
-//    private void muxing() {
-//        downloadFile = getExternalCacheDir().getAbsolutePath();
-//        downloadFile += "/music5.3gp";
-//
-//        try {
-//            File file = new File
-//        }
-//    }
     private void mixing() {
         if (mixing) {
             pool = new SoundPool(4, 2, 3);
@@ -163,16 +155,70 @@ public class Recording extends AppCompatActivity {
         }
     }
     private void startMixing() {
-        pool.play(first, 1, 1, 1, -1, 1);
-        pool.play(second, 1, 1, 1, -1, 1);
-        pool.play(third, 1, 1, 1, -1, 1);
-        pool.play(fourth, 1, 1, 1, -1, 1);
+        pool.play(first, 0.75f, 1, 1, -1, 1);
+        pool.play(second, 1, 0.75f, 1, -1, 1);
+        pool.play(third, 0.50f, 0.75f, 1, -1, 1);
+        pool.play(fourth, 0.75f, 0.50f, 1, -1, 1);
     }
     private void stopMixing() {
         pool.stop(first);
         pool.stop(second);
         pool.stop(third);
         pool.stop(fourth);
+    }
+    private void changePitch(int track) {
+        if (track == first && first != 0) {
+            pool.pause(first);
+            if (true) {
+                pool.setRate(first, 2);
+                pool.resume(first);
+            } else if (true) {
+                pool.setRate(first, 0.5f);
+                pool.resume(first);
+            } else {
+                pool.setRate(first, 1f);
+                pool.resume(first);
+            }
+        }
+        if (track == second && second != 0) {
+            pool.pause(second);
+            if (true) {
+                pool.setRate(second, 2);
+                pool.resume(second);
+            } else if (true) {
+                pool.setRate(second, 0.5f);
+                pool.resume(second);
+            } else {
+                pool.setRate(second, 1f);
+                pool.resume(second);
+            }
+        }
+        if (track == third && third != 0) {
+            pool.pause(third);
+            if (true) {
+                pool.setRate(third, 2);
+                pool.resume(third);
+            } else if (true) {
+                pool.setRate(third, 0.5f);
+                pool.resume(third);
+            } else {
+                pool.setRate(third, 1f);
+                pool.resume(third);
+            }
+        }
+        if (track == fourth && fourth != 0) {
+            pool.pause(fourth);
+            if (true) {
+                pool.setRate(fourth, 2);
+                pool.resume(fourth);
+            } else if (true) {
+                pool.setRate(fourth, 0.5f);
+                pool.resume(fourth);
+            } else {
+                pool.setRate(fourth, 1f);
+                pool.resume(fourth);
+            }
+        }
     }
 
     @Override
