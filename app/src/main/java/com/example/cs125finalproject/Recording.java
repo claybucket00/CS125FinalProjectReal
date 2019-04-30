@@ -31,9 +31,15 @@ public class Recording extends AppCompatActivity {
     boolean playing2 = true;
     boolean playing3 = true;
     boolean playing4 = true;
+    private boolean mixing = true;
+    private int first = 0;
+    private int second = 0;
+    private int third = 0;
+    private int fourth = 0;
 
     private MediaRecorder recorder = null;
     private MediaPlayer player = null;
+    private SoundPool pool = null;
 
     //Requesting permission to Record Audio
     private boolean permissionToRecordTrue = false;
@@ -103,28 +109,70 @@ public class Recording extends AppCompatActivity {
             player.release();
             player = null;
         }
+        if (pool != null) {
+            pool.release();
+            pool = null;
+        }
     }
-    private void muxing() {
-        downloadFile = getExternalCacheDir().getAbsolutePath();
-        downloadFile += "/music5.3gp";
-
+//    private void muxing() {
+//        downloadFile = getExternalCacheDir().getAbsolutePath();
+//        downloadFile += "/music5.3gp";
+//
 //        try {
 //            File file = new File
 //        }
-    }
+//    }
     private void mixing() {
-        SoundPool mix = new SoundPool(4, 2, 3);
-        String file1 = getExternalCacheDir().getAbsolutePath();
-        file1 += "/music.3gp";
-        String file2 = getExternalCacheDir().getAbsolutePath();
-        file2 += "/music1.3gp";
-        String file3 = getExternalCacheDir().getAbsolutePath();
-        file3 += "/music2.3gp";
-        mix.load(file1, 1);
-        mix.load(file2, 2);
-        mix.load(file3, 3);
-
-
+        if (mixing) {
+            pool = new SoundPool(4, 2, 3);
+            String file1 = getExternalCacheDir().getAbsolutePath();
+            file1 += "/music.3gp";
+            String file2 = getExternalCacheDir().getAbsolutePath();
+            file2 += "/music1.3gp";
+            String file3 = getExternalCacheDir().getAbsolutePath();
+            file3 += "/music2.3gp";
+            String file4 = getExternalCacheDir().getAbsolutePath();
+            file4 += "/music3.3gp";
+            first = pool.load(file1, 1);
+            second = pool.load(file2, 2);
+            third = pool.load(file3, 3);
+            fourth = pool.load(file4, 4);
+            mixing = false;
+        } else {
+            pool.release();
+            pool = new SoundPool(4, 2, 3);
+            String file1 = getExternalCacheDir().getAbsolutePath();
+            file1 += "/music.3gp";
+            String file2 = getExternalCacheDir().getAbsolutePath();
+            file2 += "/music1.3gp";
+            String file3 = getExternalCacheDir().getAbsolutePath();
+            file3 += "/music2.3gp";
+            String file4 = getExternalCacheDir().getAbsolutePath();
+            file4 += "/music3.3gp";
+            first = pool.load(file1, 1);
+            second = pool.load(file2, 2);
+            third = pool.load(file3, 3);
+            fourth = pool.load(file4, 4);
+        }
+    }
+    private void onMix(boolean isMixing) {
+        if (isMixing) {
+            startMixing();
+        } else {
+            stopMixing();
+        }
+    }
+    private void startMixing() {
+        pool.play(first, 1, 1, 1, -1, 1);
+        pool.play(second, 1, 1, 1, -1, 1);
+        pool.play(third, 1, 1, 1, -1, 1);
+        pool.play(fourth, 1, 1, 1, -1, 1);
+    }
+    private void stopMixing() {
+        pool.stop(first);
+        pool.stop(second);
+        pool.stop(third);
+        pool.stop(fourth);
     }
 
     @Override
