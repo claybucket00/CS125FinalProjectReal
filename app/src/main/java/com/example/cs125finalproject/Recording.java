@@ -42,10 +42,12 @@ public class Recording extends AppCompatActivity {
 
     private MediaRecorder recorder = null;
     private MediaPlayer player = null;
+    private MediaPlayer player1 = null;
+    private MediaPlayer player2 = null;
+    private MediaPlayer player3 = null;
     private SoundPool pool = null;
 
     //Requesting permission to Record Audio
-    private boolean permissionToRecordTrue = false;
     private String[] permissions = {Manifest.permission.RECORD_AUDIO};
 
     private void onRecord(boolean start) {
@@ -56,29 +58,30 @@ public class Recording extends AppCompatActivity {
         }
     }
 
-    private void onPlay(boolean start) {
+    private void onPlay(boolean start, MediaPlayer thingy) {
         if (start) {
-            startPlaying();
+            startPlaying(thingy);
         } else {
-            stopPlaying();
+            stopPlaying(thingy);
         }
     }
 
-    private void startPlaying() {
-        player = new MediaPlayer();
+    private void startPlaying(MediaPlayer thingy) {
+        thingy = new MediaPlayer();
         try {
-            player.setDataSource(fileName);
-            player.prepare();
-            player.start();
-            player.setLooping(true);
+            thingy.setDataSource(fileName);
+            thingy.prepare();
+            thingy.start();
+            thingy.setLooping(true);
         } catch (IOException e) {
             Log.e(LOG_TAG, "prepare() failed");
         }
     }
-    private void stopPlaying() {
-        player.release();
-        player.setLooping(false);
-        player = null;
+    private void stopPlaying(MediaPlayer thingy) {
+        thingy.setLooping(false);
+        thingy.stop();
+        thingy.release();
+        thingy = null;
     }
     private void startRecording() {
         recorder = new MediaRecorder();
@@ -111,6 +114,18 @@ public class Recording extends AppCompatActivity {
         if (player != null) {
             player.release();
             player = null;
+        }
+        if (player1 != null) {
+            player1.release();
+            player1 = null;
+        }
+        if (player2 != null) {
+            player2.release();
+            player2 = null;
+        }
+        if (player3 != null) {
+            player3.release();
+            player3 = null;
         }
         if (pool != null) {
             pool.release();
@@ -313,7 +328,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music.3gp";
-                onPlay(playing1);
+                onPlay(playing1, player);
                 playing1 = !playing1;
             }
         });
@@ -323,7 +338,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music1.3gp";
-                onPlay(playing2);
+                onPlay(playing2, player1);
                 playing2 = !playing2;
             }
         });
@@ -333,7 +348,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music2.3gp";
-                onPlay(playing3);
+                onPlay(playing3, player2);
                 playing3 = !playing3;
             }
         });
@@ -343,7 +358,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music3.3gp";
-                onPlay(playing4);
+                onPlay(playing4, player3);
                 playing4 = !playing4;
             }
         });
