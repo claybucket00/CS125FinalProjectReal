@@ -58,30 +58,75 @@ public class Recording extends AppCompatActivity {
         }
     }
 
-    private void onPlay(boolean start, MediaPlayer thingy) {
+    private void onPlay(boolean start, int whatToDo) {
         if (start) {
-            startPlaying(thingy);
+            startPlaying(whatToDo);
         } else {
-            stopPlaying(thingy);
+            stopPlaying(whatToDo);
         }
     }
 
-    private void startPlaying(MediaPlayer thingy) {
-        thingy = new MediaPlayer();
-        try {
-            thingy.setDataSource(fileName);
-            thingy.prepare();
-            thingy.start();
-            thingy.setLooping(true);
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed");
+    private void startPlaying(int whatToStart) {
+        if (whatToStart == 1) {
+            this.player = new MediaPlayer();
+            try {
+                this.player.setDataSource(fileName);
+                this.player.prepare();
+                this.player.start();
+                this.player.setLooping(true);
+            } catch (IOException e) {
+                Log.e(LOG_TAG, "prepare() failed");
+            }
+        } else if (whatToStart == 2) {
+            this.player1 = new MediaPlayer();
+            try {
+                this.player1.setDataSource(fileName);
+                this.player1.prepare();
+                this.player1.start();
+                this.player1.setLooping(true);
+            } catch (IOException e) {
+                Log.e(LOG_TAG, "prepare() failed");
+            }
+        } else if (whatToStart == 3) {
+            this.player2 = new MediaPlayer();
+            try {
+                this.player2.setDataSource(fileName);
+                this.player2.prepare();
+                this.player2.start();
+                this.player2.setLooping(true);
+            } catch (IOException e) {
+                Log.e(LOG_TAG, "prepare() failed");
+            }
+        } else {
+            this.player3 = new MediaPlayer();
+            try {
+                this.player3.setDataSource(fileName);
+                this.player3.prepare();
+                this.player3.start();
+                this.player3.setLooping(true);
+            } catch (IOException e) {
+                Log.e(LOG_TAG, "prepare() failed");
+            }
         }
     }
-    private void stopPlaying(MediaPlayer thingy) {
-        thingy.setLooping(false);
-        thingy.stop();
-        thingy.release();
-        thingy = null;
+    private void stopPlaying(int whatToStop) {
+        if (whatToStop == 1 && player != null ) {
+            player.stop();
+            player.release();
+            player = null;
+        } else if (whatToStop == 2 && player1 != null) {
+            player1.stop();
+            player1.release();
+            player1 = null;
+        } else if (whatToStop == 3 && player2 != null) {
+            player2.stop();
+            player2.release();
+            player2 = null;
+        } else if (whatToStop == 4 && player3 != null) {
+            player3.stop();
+            player3.release();
+            player3 = null;
+        }
     }
     private void startRecording() {
         recorder = new MediaRecorder();
@@ -173,9 +218,9 @@ public class Recording extends AppCompatActivity {
         }
     }
     private void startMixing() {
-        pool.play(first, 0.75f, 1, 1, -1, 1);
+        pool.play(first, 0.75f, 1, 0, -1, 1);
         pool.play(second, 1, 0.75f, 1, -1, 1);
-        pool.play(third, 0.50f, 0.75f, 1, -1, 1);
+        pool.play(third, 0.50f, 0.75f, 0, -1, 1);
         pool.play(fourth, 0.75f, 0.50f, 1, -1, 1);
     }
     private void stopMixing() {
@@ -328,7 +373,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music.3gp";
-                onPlay(playing1, player);
+                onPlay(playing1, 1);
                 playing1 = !playing1;
             }
         });
@@ -338,7 +383,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music1.3gp";
-                onPlay(playing2, player1);
+                onPlay(playing2, 2);
                 playing2 = !playing2;
             }
         });
@@ -348,7 +393,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music2.3gp";
-                onPlay(playing3, player2);
+                onPlay(playing3, 3);
                 playing3 = !playing3;
             }
         });
@@ -358,7 +403,7 @@ public class Recording extends AppCompatActivity {
             public void onClick(View v) {
                 fileName = getExternalCacheDir().getAbsolutePath();
                 fileName += "/music3.3gp";
-                onPlay(playing4, player3);
+                onPlay(playing4, 4);
                 playing4 = !playing4;
             }
         });
