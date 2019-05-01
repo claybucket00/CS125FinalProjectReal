@@ -2,6 +2,7 @@ package com.example.cs125finalproject;
 
 import android.Manifest;
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -162,22 +163,22 @@ public class Recording extends AppCompatActivity {
         return file;
     }
 
-    private void save(String first, String second, String third, String fourth) {
+    private void save(String first1, String second2, String third3, String fourth4) {
         String dir = getPublicMusictorageDir().toString();
-        copyFile(first, dir);
-        copyFile(second, dir);
-        copyFile(third, dir);
-        copyFile(fourth, dir);
+        copyFile(first1, dir);
+        copyFile(second2, dir);
+        copyFile(third3, dir);
+        copyFile(fourth4, dir);
     }
 
     private void copyFile(String src, String dst) {
-        FileInputStream inputStream; // create an input stream
-        FileOutputStream outputStream; // create an output stream
+        FileInputStream inputStream;
+        FileOutputStream outputStream;
         try {
-            inputStream = new FileInputStream(src); // create object
-            outputStream = openFileOutput(dst, Context.MODE_WORLD_READABLE); // save your file in private mode, which makes it inaccessible by other applications
+            inputStream = new FileInputStream(src);
+            outputStream = openFileOutput(dst, Context.MODE_WORLD_READABLE);
             int bufferSize;
-            byte[] bufffer = new byte[512]; // I think logically here could be useful for trimming the file. I mean just copy an specified part of the file.
+            byte[] bufffer = new byte[512];
             while ((bufferSize = inputStream.read(bufffer)) > 0) {
                 outputStream.write(bufffer, 0, bufferSize);
             }
@@ -221,7 +222,7 @@ public class Recording extends AppCompatActivity {
             if (pool != null) {
                 pool.release();
             }
-            pool = new SoundPool(6, 2, 1);
+            pool = new SoundPool(6, AudioManager.STREAM_MUSIC, 0);
             fileName = getExternalCacheDir().getAbsolutePath();
             fileName += "/music.3gp";
             fileName2 = getExternalCacheDir().getAbsolutePath();
@@ -230,8 +231,8 @@ public class Recording extends AppCompatActivity {
             fileName3 += "/music2.3gp";
             fileName4 = getExternalCacheDir().getAbsolutePath();
             fileName4 += "/music3.3gp";
-            first = pool.load(fileName, 0);
-            second = pool.load(fileName2, 0);
+            first = pool.load(fileName, 1);
+            second = pool.load(fileName2, 1);
             third = pool.load(fileName3, 1);
             fourth = pool.load(fileName4, 1);
         }
@@ -244,10 +245,10 @@ public class Recording extends AppCompatActivity {
         }
     }
     private void startMixing() {
-        pool.play(first, 0.75f, 1f, 0, -1, 1);
-        pool.play(second, 1f, 0.75f, 1, -1, 1);
-        pool.play(third, 0.50f, 0.75f, 0, -1, 1);
-        pool.play(fourth, 0.75f, 0.50f, 1, -1, 1);
+        pool.play(first, 1f, 1f, 0, -1, 1);
+        pool.play(second, 1f, 1f, 1, -1, 1);
+        pool.play(third, 1f, 1f, 0, -1, 1);
+        pool.play(fourth, 1f, 1f, 1, -1, 1);
     }
     private void stopMixing() {
         pool.stop(first);
@@ -255,57 +256,70 @@ public class Recording extends AppCompatActivity {
         pool.stop(third);
         pool.stop(fourth);
     }
-    private void changePitch(int track) {
-        if (track == first && first != 0) {
+    private void changePitch(int track, Button input) {
+        if (track == first) {
             pool.pause(first);
-            if (true) {
+            if (input.getText().toString().equals(getString(R.string.track1Pitch))) {
                 pool.setRate(first, 2);
                 pool.resume(first);
-            } else if (true) {
+                String toSet = getString(R.string.highPitch);
+                input.setText(toSet);
+            } else if (input.getText().toString().equals(getString(R.string.highPitch))) {
                 pool.setRate(first, 0.5f);
                 pool.resume(first);
+                input.setText(getString(R.string.lowPitch));
             } else {
                 pool.setRate(first, 1f);
                 pool.resume(first);
+                input.setText(getString(R.string.track1Pitch));
             }
         }
-        if (track == second && second != 0) {
+        if (track == second) {
             pool.pause(second);
-            if (true) {
+            if (input.getText().toString().equals(getString(R.string.track2Pitch))) {
                 pool.setRate(second, 2);
                 pool.resume(second);
-            } else if (true) {
+                input.setText(getString(R.string.highPitch));
+            } else if (input.getText().toString().equals(getString(R.string.highPitch))) {
                 pool.setRate(second, 0.5f);
                 pool.resume(second);
+                input.setText(getString(R.string.lowPitch));
             } else {
                 pool.setRate(second, 1f);
                 pool.resume(second);
+                input.setText(getString(R.string.track2Pitch));
             }
         }
-        if (track == third && third != 0) {
+        if (track == third) {
             pool.pause(third);
-            if (true) {
+            if (input.getText().toString().equals(getString(R.string.track3Pitch))) {
                 pool.setRate(third, 2);
                 pool.resume(third);
-            } else if (true) {
+                input.setText(getString(R.string.highPitch));
+            } else if (input.getText().toString().equals(getString(R.string.highPitch))) {
                 pool.setRate(third, 0.5f);
                 pool.resume(third);
+                input.setText(getString(R.string.lowPitch));
             } else {
                 pool.setRate(third, 1f);
                 pool.resume(third);
+                input.setText(getString(R.string.track3Pitch));
             }
         }
-        if (track == fourth && fourth != 0) {
+        if (track == fourth) {
             pool.pause(fourth);
-            if (true) {
+            if (input.getText().toString().equals(getString(R.string.track4Pitch))) {
                 pool.setRate(fourth, 2);
                 pool.resume(fourth);
-            } else if (true) {
+                input.setText(getString(R.string.highPitch));
+            } else if (input.getText().toString().equals(getString(R.string.highPitch))) {
                 pool.setRate(fourth, 0.5f);
                 pool.resume(fourth);
+                input.setText(getString(R.string.lowPitch));
             } else {
                 pool.setRate(fourth, 1f);
                 pool.resume(fourth);
+                input.setText(getString(R.string.track4Pitch));
             }
         }
     }
@@ -445,6 +459,34 @@ public class Recording extends AppCompatActivity {
                 String file4 = getExternalCacheDir().getAbsolutePath();
                 file4 += "/music3.3gp";
                 save(file1, file2, file3, file4);
+            }
+        });
+
+        final Button track1Pitch = findViewById(R.id.track1Pitch);
+        track1Pitch.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                changePitch(first, track1Pitch);
+            }
+        });
+
+        final Button track2Pitch = findViewById(R.id.track2Pitch);
+        track2Pitch.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                changePitch(second, track2Pitch);
+            }
+        });
+
+        final Button track3Pitch = findViewById(R.id.track3Pitch);
+        track3Pitch.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                changePitch(third, track3Pitch);
+            }
+        });
+
+        final Button track4Pitch = findViewById(R.id.track4Pitch);
+        track4Pitch.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                changePitch(fourth, track4Pitch);
             }
         });
     }
