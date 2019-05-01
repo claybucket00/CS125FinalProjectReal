@@ -1,30 +1,34 @@
 package com.example.cs125finalproject;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.ToggleButton;
-import android.widget.CheckBox;
 import android.widget.Button;
-import android.media.MediaMuxer;
 import android.media.SoundPool;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 public class Recording extends AppCompatActivity {
     private static final String LOG_TAG = "Music";
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION = 200;
     private static String fileName = null;
-    private static String downloadFile = null;
+    private static String fileName2 = null;
+    private static String fileName3 = null;
+    private static String fileName4 = null;
     boolean recording1 = true;
     boolean recording2 = true;
     boolean recording3 = true;
@@ -47,8 +51,8 @@ public class Recording extends AppCompatActivity {
     private MediaPlayer player3 = null;
     private SoundPool pool = null;
 
-    //Requesting permission to Record Audio
-    private String[] permissions = {Manifest.permission.RECORD_AUDIO};
+    //Requesting permission to Record Audio and Write to External Storage
+    private String[] permissions = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private void onRecord(boolean start) {
         if (start) {
@@ -149,6 +153,41 @@ public class Recording extends AppCompatActivity {
         recorder = null;
     }
 
+    public File getPublicMusictorageDir() {
+        File file = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS) + "/saved_Audio");
+        if (!file.mkdirs()) {
+            Log.e(LOG_TAG, "Directory not created");
+        }
+        return file;
+    }
+
+    private void save(String first, String second, String third, String fourth) {
+        String dir = getPublicMusictorageDir().toString();
+        copyFile(first, dir);
+        copyFile(second, dir);
+        copyFile(third, dir);
+        copyFile(fourth, dir);
+    }
+
+    private void copyFile(String src, String dst) {
+        FileInputStream inputStream; // create an input stream
+        FileOutputStream outputStream; // create an output stream
+        try {
+            inputStream = new FileInputStream(src); // create object
+            outputStream = openFileOutput(dst, Context.MODE_WORLD_READABLE); // save your file in private mode, which makes it inaccessible by other applications
+            int bufferSize;
+            byte[] bufffer = new byte[512]; // I think logically here could be useful for trimming the file. I mean just copy an specified part of the file.
+            while ((bufferSize = inputStream.read(bufffer)) > 0) {
+                outputStream.write(bufffer, 0, bufferSize);
+            }
+            inputStream.close();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -179,39 +218,26 @@ public class Recording extends AppCompatActivity {
     }
     private void mixing() {
         if (mixing) {
+            if (pool != null) {
+                pool.release();
+            }
             pool = new SoundPool(6, 2, 1);
-            String file1 = getExternalCacheDir().getAbsolutePath();
-            file1 += "/music.3gp";
-            String file2 = getExternalCacheDir().getAbsolutePath();
-            file2 += "/music1.3gp";
-            String file3 = getExternalCacheDir().getAbsolutePath();
-            file3 += "/music2.3gp";
-            String file4 = getExternalCacheDir().getAbsolutePath();
-            file4 += "/music3.3gp";
-            first = pool.load(file1, 1);
-            second = pool.load(file2, 2);
-            third = pool.load(file3, 3);
-            fourth = pool.load(file4, 4);
-            mixing = false;
-        } else {
-            pool.release();
-            pool = new SoundPool(6, 2, 1);
-            String file1 = getExternalCacheDir().getAbsolutePath();
-            file1 += "/music.3gp";
-            String file2 = getExternalCacheDir().getAbsolutePath();
-            file2 += "/music1.3gp";
-            String file3 = getExternalCacheDir().getAbsolutePath();
-            file3 += "/music2.3gp";
-            String file4 = getExternalCacheDir().getAbsolutePath();
-            file4 += "/music3.3gp";
-            first = pool.load(file1, 1);
-            second = pool.load(file2, 2);
-            third = pool.load(file3, 3);
-            fourth = pool.load(file4, 4);
+            fileName = getExternalCacheDir().getAbsolutePath();
+            fileName += "/music.3gp";
+            fileName2 = getExternalCacheDir().getAbsolutePath();
+            fileName2 += "/music1.3gp";
+            fileName3 = getExternalCacheDir().getAbsolutePath();
+            fileName3 += "/music2.3gp";
+            fileName4 = getExternalCacheDir().getAbsolutePath();
+            fileName4 += "/music3.3gp";
+            first = pool.load(fileName, 0);
+            second = pool.load(fileName2, 0);
+            third = pool.load(fileName3, 1);
+            fourth = pool.load(fileName4, 1);
         }
     }
-    private void onMix(boolean isMixing) {
-        if (isMixing) {
+    private void onMix(boolean toMix) {
+        if (toMix) {
             startMixing();
         } else {
             stopMixing();
@@ -289,19 +315,17 @@ public class Recording extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //record file to external cache
         ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
+        ActivityCompat.requestPermissions(this, permissions, REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION);
 
 
         setContentView(R.layout.activity_recording);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final CheckBox mixAllTogether = findViewById(R.id.checkBox);
+        final Button mixAllTogether = findViewById(R.id.loopAllTracks);
         mixAllTogether.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                boolean checked = mixAllTogether.isChecked();
-                if (checked) {
-                    mixing();
-                }
+                mixing();
             }
         });
 
@@ -309,6 +333,7 @@ public class Recording extends AppCompatActivity {
         playAllTracks.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onMix(mixingPlaying);
+                mixingPlaying = !mixingPlaying;
             }
         });
 
@@ -405,6 +430,21 @@ public class Recording extends AppCompatActivity {
                 fileName += "/music3.3gp";
                 onPlay(playing4, 4);
                 playing4 = !playing4;
+            }
+        });
+
+        final Button download = findViewById(R.id.downloadButton);
+        download.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String file1 = getExternalCacheDir().getAbsolutePath();
+                file1 += "/music.3gp";
+                String file2 = getExternalCacheDir().getAbsolutePath();
+                file2 += "/music1.3gp";
+                String file3 = getExternalCacheDir().getAbsolutePath();
+                file3 += "/music2.3gp";
+                String file4 = getExternalCacheDir().getAbsolutePath();
+                file4 += "/music3.3gp";
+                save(file1, file2, file3, file4);
             }
         });
     }
